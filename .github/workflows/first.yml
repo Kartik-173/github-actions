@@ -1,9 +1,11 @@
-name: CI Test
+name: CI + CD
 
-on: push
+on:
+  push:
+    branches: [main]
 
 jobs:
-  test:
+  test-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -20,3 +22,6 @@ jobs:
 
       - name: Run tests
         run: npm test
+
+      - name: Deploy to Vercel
+        run: npx vercel --token=$VERCEL_TOKEN --prod
